@@ -1,0 +1,21 @@
+name: "Kestrel greeting <run suffix>"
+description: "Kestrel prints a friendly greeting for the name you pass in, straight into the job log."
+
+branding:
+  icon: sun
+  color: blue
+
+inputs:
+  who-to-greet:
+    description: "Who to greet"
+    required: true
+    default: "World"
+
+runs:
+  using: composite
+  steps:
+    - name: Say hello
+      shell: bash
+      env:
+        WHO_TO_GREET: ${{ inputs.who-to-greet }}
+      run: echo "Hello, $WHO_TO_GREET! A kestrel says good morning."
